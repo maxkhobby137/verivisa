@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriVisa — Emplois vérifiés avec parrainage de visa</title>
+<meta name="description" content="Offres d'emploi vérifiées avec parrainage de visa (visa sponsorship) au Canada, USA, France, Belgique, Royaume-Uni, Suisse, Australie, Allemagne, Luxembourg, Danemark, Norvège et Nouvelle-Zélande.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://vumebxsjbfmakcobtinm.supabase.co; frame-src https://challenges.cloudflare.com; base-uri 'none'; object-src 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="./"><b>V</b>VeriVisa</a>
+  <nav class="links">
+    <a href="#jobs" class="hide-m" data-i="nav_jobs">Offres</a>
+    <a href="#how" class="hide-m" data-i="nav_how">Vérification</a>
+    <a href="#pricing" class="hide-m" data-i="nav_pricing">Abonnement</a>
+    <button class="btn small" id="accessBtn" data-i="nav_login">Mon accès</button>
+    <select id="lang" aria-label="Langue"></select>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div id="banner"></div>
+  <section class="hero">
+    <h1 data-i="hero_title">Des emplois avec parrainage de visa. Vérifiés, un par un.</h1>
+    <p data-i="hero_sub"></p>
+    <div class="trust"><span data-i="trust_1"></span><span data-i="trust_2"></span><span data-i="trust_3"></span><span data-i="trust_4"></span></div>
+  </section>
+
+  <div id="jobs">
+    <div class="filters">
+      <input id="q" type="search" maxlength="80" data-ph="search_ph" aria-label="Recherche">
+      <select id="level"><option value="0" data-i="all_levels"></option><option value="1" data-i="only_verified"></option></select>
+      <button class="btn primary" id="go">🔎</button>
+    </div>
+    <div class="chips" id="chips" role="toolbar"></div>
+    <div class="meta-line" id="meta"></div>
+    <div class="grid" id="list"></div>
+    <div id="lockedBox"></div>
+  </div>
+
+  <section id="how">
+    <h2 data-i="how_title"></h2><p class="lead" data-i="how_lead"></p>
+    <div class="steps">
+      <div class="step"><b>1 · <span data-i="s1"></span></b><p data-i="s1d"></p></div>
+      <div class="step"><b>2 · <span data-i="s2"></span></b><p data-i="s2d"></p></div>
+      <div class="step"><b>3 · <span data-i="s3"></span></b><p data-i="s3d"></p></div>
+      <div class="step"><b>4 · <span data-i="s4"></span></b><p data-i="s4d"></p></div>
+      <div class="step"><b>5 · <span data-i="s5"></span></b><p data-i="s5d"></p></div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2 data-i="pricing_title"></h2><p class="lead" data-i="pricing_lead"></p>
+    <div class="plans">
+      <div class="plan"><h3 data-i="p_free"></h3><div class="price">0 €</div>
+        <ul><li data-i="p_free_1"></li><li data-i="p_free_2"></li><li data-i="p_free_3"></li></ul></div>
+      <div class="plan hl"><h3 data-i="p_month"></h3><div class="price" id="priceM">9,90 €<small data-i="per_month"></small></div>
+        <ul><li data-i="p_1"></li><li data-i="p_2"></li><li data-i="p_3"></li><li data-i="p_4"></li></ul>
+        <button class="btn primary" data-plan="monthly" data-i="choose"></button></div>
+      <div class="plan"><h3 data-i="p_quarter"></h3><div class="price" id="priceQ">24,90 €<small data-i="per_quarter"></small></div>
+        <p><span class="badge ok" data-i="save"></span></p>
+        <ul><li data-i="p_1"></li><li data-i="p_2"></li><li data-i="p_3"></li><li data-i="p_4"></li></ul>
+        <button class="btn" data-plan="quarterly" data-i="choose"></button></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>© <span id="yr"></span> VeriVisa · EDOA Global Services</span>
+  <a href="privacy.html" data-i="f_privacy"></a><a href="terms.html" data-i="f_terms"></a>
+  <span data-i="f_disclaimer" style="flex-basis:100%"></span>
+</div></footer>
+
+<!-- Paiement (Polar) -->
+<dialog id="buyDlg"><form id="buyForm">
+  <h3 data-i="pay"></h3>
+  <input type="email" id="buyEmail" name="email" required maxlength="190" data-ph="email" autocomplete="email">
+  <label class="ck"><input type="checkbox" name="terms" required><span data-i="terms_ck"></span></label>
+  <button class="btn primary" data-i="pay"></button><button class="btn" type="button" data-close data-i="cancel"></button>
+  <p id="buyMsg" class="lead"></p>
+</form></dialog>
+
+<!-- Code d'accès affiché après paiement -->
+<dialog id="codeDlg"><form method="dialog">
+  <h3 data-i="code_title"></h3><p class="lead" data-i="code_sub"></p>
+  <p class="code" id="codeVal"></p>
+  <button class="btn" type="button" id="copyCode" data-i="copy"></button><button class="btn primary">OK</button>
+</form></dialog>
+
+<!-- Accès abonné (email + code) -->
+<dialog id="loginDlg"><form id="loginForm">
+  <h3 data-i="login_title"></h3><p class="lead" data-i="login_sub2"></p>
+  <input type="email" name="email" required maxlength="190" data-ph="email" autocomplete="email">
+  <input name="code" required maxlength="20" data-ph="code_label" autocomplete="one-time-code" style="text-transform:uppercase">
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="ts"></div>
+  <button class="btn primary" data-i="restore"></button><button class="btn" type="button" data-close data-i="cancel"></button>
+  <p id="loginMsg" class="lead"></p>
+</form></dialog>
+
+<!-- Compte Premium -->
+<dialog id="accountDlg"><form method="dialog">
+  <h3>★ Premium</h3><p class="lead" id="premiumInfo"></p>
+  <button class="btn" type="button" id="logoutBtn" data-i="nav_logout"></button><button class="btn primary">OK</button>
+</form></dialog>
+
+<!-- Signalement -->
+<dialog id="reportDlg"><form id="reportForm">
+  <h3 data-i="report_q"></h3>
+  <textarea name="reason" rows="3" maxlength="300" required></textarea>
+  <button class="btn primary" data-i="report"></button><button class="btn" type="button" data-close data-i="cancel"></button>
+  <p id="reportMsg" class="lead"></p>
+</form></dialog>
+
+<!-- Chatbot -->
+<button class="btn primary chat-fab" id="chatFab" aria-label="Chat">💬</button>
+<div class="chat" id="chat" role="dialog" aria-label="Assistant">
+  <header><span data-i="chat_title"></span><button class="btn small" id="chatClose">✕</button></header>
+  <div class="msgs" id="msgs"></div>
+  <form id="chatForm"><input name="m" maxlength="800" data-ph="chat_ph" autocomplete="off"><input class="hp" name="website" tabindex="-1" autocomplete="off"><button class="btn primary" data-i="send"></button></form>
+</div>
+
+<div class="cookie" id="cookie" hidden><span data-i="cookie_txt"></span> <a href="privacy.html" data-i="more"></a><button class="btn small primary" id="cookieOk" data-i="cookie_ok"></button></div>
+</body>
+</html>
