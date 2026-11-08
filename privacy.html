@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidentialité & RGPD — VeriVisa</title><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://vumebxsjbfmakcobtinm.supabase.co; frame-src https://challenges.cloudflare.com; base-uri 'none'; object-src 'none'"><link rel="stylesheet" href="styles.css"><script src="config.js" defer></script><script src="privacy.js" defer></script></head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="./"><b>V</b>VeriVisa</a></div></header>
+<main class="wrap prose">
+<section>
+<h1>Politique de confidentialité</h1>
+<p><em>Modèle à faire valider par un professionnel du droit avant mise en ligne. Dernière mise à jour : 08/11/2026.</em></p>
+<h2>Responsable du traitement</h2>
+<p>EDOA Global Services — Bologne (Italie) — contact : edoaglobalservices137@gmail.com.</p>
+<h2>Données collectées et finalités</h2>
+<ul>
+<li><b>Email et statut d'abonnement</b> (abonnés) : gestion de l'accès Premium — base légale : exécution du contrat (art. 6.1.b RGPD). Le code d'accès est stocké sous forme hachée.</li>
+<li><b>Paiement</b> : traité par Polar Software Inc. (polar.sh), revendeur officiel (Merchant of Record) qui gère la facturation et la TVA. Nous ne voyons ni ne stockons aucune donnée de carte.</li>
+<li><b>Sécurité</b> : adresse IP <b>hachée</b> (non réversible) pour la limitation de débit et l'anti-fraude — intérêt légitime (art. 6.1.f). Conservation : 2 jours (débit), 180 jours (journal de sécurité).</li>
+<li><b>Chatbot</b> : les messages ne sont pas conservés par VeriVisa. Si l'assistant IA est activé, une question non couverte par la FAQ est transmise à Google (API Gemini) pour générer la réponse : n'y saisissez aucune donnée personnelle.</li>
+</ul>
+<h2>Cookies</h2>
+<p>Uniquement un stockage strictement nécessaire (jeton de session abonné, langue choisie) et la protection anti-robot Cloudflare Turnstile. Aucun cookie publicitaire ni outil de mesure d'audience tiers : ce stockage est exempté de consentement (art. 5.3 directive ePrivacy).</p>
+<h2>Sous-traitants</h2>
+<p>GitHub Pages (hébergement du site), Supabase (base de données, région UE — Francfort), Polar (paiement), Cloudflare (anti-robot), Google (assistant IA, si activé). Transferts hors UE encadrés par le Data Privacy Framework UE-USA ou les clauses contractuelles types.</p>
+<h2>Vos droits</h2>
+<p>Accès, rectification, effacement, portabilité, opposition, limitation. Utilisez le formulaire ci-dessous ou écrivez-nous à edoaglobalservices137@gmail.com. Nous vérifions votre identité par email avant d'exécuter la demande, sous un mois maximum. Vous pouvez saisir le Garante per la protezione dei dati personali (Italie) ou l'autorité de votre pays.</p>
+
+<form id="gdprForm" class="plan" style="display:grid;gap:10px;max-width:460px">
+  <h3>Exercer mes droits</h3>
+  <input type="email" name="email" placeholder="Email du compte" required maxlength="190">
+  <select name="kind"><option value="export">Recevoir une copie de mes données</option><option value="delete">Supprimer mes données et mon abonnement</option></select>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off">
+  <div class="ts"></div>
+  <button class="btn primary">Envoyer la demande</button>
+  <p id="gdprMsg" class="lead"></p>
+</form>
+</section>
+</main>
+</body></html>
