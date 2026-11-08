@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>VeriVisa Admin</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://vumebxsjbfmakcobtinm.supabase.co; base-uri 'none'; object-src 'none'; form-action 'self'">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .kpi small{color:var(--muted);display:block;font-size:12px}.kpi b{font-size:26px;letter-spacing:-.02em}
+  .tabs{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);margin:8px 0 16px}
+  .tabs button{border:0;background:none;padding:10px 12px;cursor:pointer;color:var(--muted);font-weight:600;border-bottom:2px solid transparent;white-space:nowrap}
+  .tabs button[aria-selected=true]{color:var(--text);border-color:var(--brand)}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600;background:var(--surface-2)}
+  .tbl{overflow-x:auto}.bar{height:8px;border-radius:4px;background:var(--brand);min-width:2px}
+  .login{max-width:380px;margin:60px auto;display:grid;gap:10px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.two{grid-template-columns:1fr}}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .panel h3{margin:0 0 10px;font-size:15px}
+  .settings{display:grid;gap:12px;max-width:720px}.settings h3{margin-top:10px}
+  .fld{display:grid;gap:4px}.fld span{font-weight:600;font-size:13px}.fld small{color:var(--muted);font-size:12px}.fld code{font-size:11px;word-break:break-all}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" crossorigin="anonymous" defer></script>
+<script src="config.js" defer></script>
+<script src="admin.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="./"><b>V</b>VeriVisa · Admin</a>
+  <nav class="links"><button class="btn small" id="logout" hidden>Déconnexion</button></nav></div></header>
+<main class="wrap">
+  <form class="login" id="loginForm" hidden>
+    <h2>Connexion administrateur</h2>
+    <p class="lead">Accès réservé à l'administrateur unique. Un code à 6 chiffres est envoyé à l'adresse admin.</p>
+    <input name="email" type="email" placeholder="Email admin" required autocomplete="username">
+    <button class="btn primary" id="sendCode">Recevoir le code</button>
+    <input name="otp" inputmode="numeric" maxlength="10" placeholder="Code reçu par email" autocomplete="one-time-code" hidden>
+    <button class="btn primary" id="verifyCode" type="button" hidden>Se connecter</button>
+    <p id="loginErr" class="lead"></p>
+  </form>
+
+  <div id="app" hidden>
+    <div class="kpis" id="kpis"></div>
+    <div class="tabs" role="tablist">
+      <button data-tab="overview" aria-selected="true">Vue d'ensemble</button>
+      <button data-tab="review">À vérifier</button>
+      <button data-tab="verified">Publiées</button>
+      <button data-tab="add">Ajouter une offre</button>
+      <button data-tab="registry">Registres</button>
+      <button data-tab="subs">Abonnés</button>
+      <button data-tab="settings">Paiements & clés</button>
+      <button data-tab="gdpr">RGPD</button>
+      <button data-tab="security">Sécurité</button>
+    </div>
+    <div id="view"></div>
+  </div>
+</main>
+</body>
+</html>
